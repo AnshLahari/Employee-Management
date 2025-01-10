@@ -1,0 +1,4 @@
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    border: 1px solid #dc3545 !important;
+}
