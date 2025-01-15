@@ -7,6 +7,7 @@ import { saveEmployeeToDatabase } from '../../Service/Employee/employee';
 import '../Assets/common.css';
 // import EmployeeListData from '../EmployeeData/EmployeeListData';
 import { useNavigate } from 'react-router-dom';
+import EmployeeListData from '../EmployeeData/EmployeeListData';
 
 
 function AddEmployee() {
@@ -102,6 +103,7 @@ const handleCancel=()=>{
         //   console.error(error);  
           alert('Failed to add employee!');  
         });
+      
     }
   };
 
