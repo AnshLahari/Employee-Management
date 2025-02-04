@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { getEmployeesFromDatabase } from '../../Service/Employee/getEmployeeDataList'
-import styles from  "./EmployeeListTable.module.css"
+import styles from "./EmployeeListTable.module.css"
+import EditEmployeeListData from './editEmployeeListData'
+import { TbUserEdit } from 'react-icons/tb'
 
 
 const EmployeeListData = () => {
   const [getEmployeeListFromFirebse, setGetEmployeeListFromFirebse] = useState([])
+  const [openSidebar, setOpenSidebar] = useState(false);
+  // const [editEmployeeListData,setEditEmployeeListData]= useState();
 
   useEffect(() => {
     getData()
@@ -12,7 +16,7 @@ const EmployeeListData = () => {
 
   const getData = async () => {
     const result = await getEmployeesFromDatabase()
-    console.log(result)
+    // console.log(result)
     setGetEmployeeListFromFirebse(result)
   }
 
@@ -29,6 +33,7 @@ const EmployeeListData = () => {
               <th className={styles.tableHeader}>Email</th>
               <th className={styles.tableHeader}>Username</th>
               <th className={styles.tableHeader}>Password</th>
+              <th className={styles.tableHeader}>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -38,11 +43,18 @@ const EmployeeListData = () => {
                 <td className={styles.tableCell}>{employee.email}</td>
                 <td className={styles.tableCell}>{employee.username}</td>
                 <td className={styles.tableCell}>{employee.password}</td>
+                <td onClick={() => setOpenSidebar(true)}><TbUserEdit /></td>
+
               </tr>
             ))}
           </tbody>
         </table>
       )}
+      <EditEmployeeListData
+        openSidebar={openSidebar}
+        setOpenSidebar={setOpenSidebar}
+        
+      />
     </div>
   )
 }

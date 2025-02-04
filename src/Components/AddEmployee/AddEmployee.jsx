@@ -5,9 +5,7 @@ import './AddEmployee.css';
 import { useState } from 'react';
 import { saveEmployeeToDatabase } from '../../Service/Employee/employee';
 import '../Assets/common.css';
-// import EmployeeListData from '../EmployeeData/EmployeeListData';
 import { useNavigate } from 'react-router-dom';
-import EmployeeListData from '../EmployeeData/EmployeeListData';
 
 
 function AddEmployee() {
@@ -89,8 +87,13 @@ const handleCancel=()=>{
     setEmployeePasswordError(!passwordValid);  
 
     if (nameValid && codeValid && emailValid && passwordValid) {
+
+      
       saveEmployeeToDatabase(employeeCode, employeeName, employeeEmail, employeePassword)
+
         .then((response) => {
+        //  console.log(response);
+         
           alert('Employee added successfully!');
           navigate("/list")
           setEmployeeName("");  
@@ -99,6 +102,8 @@ const handleCancel=()=>{
           setEmployeePassword(""); 
      
         })
+   
+       
         .catch((error) => {
         //   console.error(error);  
           alert('Failed to add employee!');  
